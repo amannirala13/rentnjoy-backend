@@ -15,25 +15,25 @@ if($reqdata["apikey"] == "someapikey"){
   $checksql3 = "SELECT * FROM users where phone=".$user3;
   $checksql4 = "SELECT * FROM users where phone=".$user4;
   $erruser = array();
-  i= 0;
-  if(mysqli_num_rows(mysqli_query($conn, $checksql1)) > 0){
-    $erruser[i]=  $user1;
-    i = i+1;
+  $i= 0;
+  if(mysqli_num_rows(mysqli_query($conn, $checksql1)) <= 0){
+    $erruser[$i]=  $user1;
+    $i = $i+1;
   }
-  if(mysqli_num_rows(mysqli_query($conn, $checksql2)) > 0){
+  if(mysqli_num_rows(mysqli_query($conn, $checksql2)) <= 0){
     $erruser[i]=  $user2;
-    i = i+1;
+    $i = $i+1;
   }
-  if(mysqli_num_rows(mysqli_query($conn, $checksql3)) > 0){
+  if(mysqli_num_rows(mysqli_query($conn, $checksql3)) <= 0){
     $erruser[i]=  $user3;
-    i = i+1;
+    $i = $i+1;
   }
-  if(mysqli_num_rows(mysqli_query($conn, $checksql4)) > 0){
+  if(mysqli_num_rows(mysqli_query($conn, $checksql4)) <= 0){
     $erruser[i]=  $user4;
-    i = i+1;
+    $i = $i+1;
   }
 
-  if(i==0){
+  if($i==0){
 
     $sql = "INSERT INTO cart (user1, user2, user3,user4,user5,product_id,user_id)
     VALUES ($user1,$user2,$user3,$user4,$user5,$pid,$uid)";
